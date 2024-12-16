@@ -4,7 +4,6 @@ import { Footer } from "./Footer";
 import { Route, Routes } from "react-router-dom";
 import { Welcome } from "./Welcome";
 import { Articles } from "./Articles";
-import { Article } from "./Article";
 
 function App() {
   return (
