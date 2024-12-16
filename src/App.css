@@ -58,3 +58,7 @@ label {
   padding: 10px;
   font-weight: bold;
 }
+
+.article-img {
+  size: 40px;
+}
