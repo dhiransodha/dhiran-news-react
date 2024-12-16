@@ -1,14 +1,20 @@
-import { useState } from "react";
 import "./App.css";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { Route, Routes } from "react-router-dom";
+import { Welcome } from "./Welcome";
+import { Articles } from "./Articles";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/articles" element={<Articles />} />
+        <Route path="*" element={<p>page not found</p>} />
+      </Routes>
+      <Footer />
     </>
   );
 }
