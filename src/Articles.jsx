@@ -9,6 +9,7 @@ import { Filters } from "./Filters";
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [filters, setFilters] = useState({
@@ -20,6 +21,7 @@ export const Articles = () => {
 
   useEffect(() => {
     setIsLoading(true);
+    setIsError(false);
     axios
       .get(
         `https://dhiran-news.onrender.com/api/articles?topic=${filters.topic}&sort_by=${filters.sortBy}&order=${filters.order}&limit=${limit}&p=${page}`
@@ -28,6 +30,10 @@ export const Articles = () => {
         setArticles(data.articles);
         setTotalItems(data.total_count);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setIsError(true);
       });
   }, [page, filters]);
   return (
@@ -35,6 +41,8 @@ export const Articles = () => {
       <Filters setFilters={setFilters} />
       {isLoading ? (
         <Lottie animationData={loading} />
+      ) : isError ? (
+        <p>error loading content</p>
       ) : (
         <>
           <ArticleList articles={articles} />
