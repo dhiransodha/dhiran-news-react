@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import useApiGet from "./utils";
 
 export const Filters = ({ setFilters }) => {
   const handleChange = (e) => {
@@ -8,14 +8,14 @@ export const Filters = ({ setFilters }) => {
     });
   };
   const [topics, setTopics] = useState([]);
+  const { get } = useApiGet();
   useEffect(() => {
-    axios
-      .get(`https://dhiran-news.onrender.com/api/topics`)
-      .then(({ data: { topics } }) => {
-        const topicNames = topics.map((topic) => topic.slug);
-        setTopics(topicNames);
-      });
+    get("topics").then(({ topics }) => {
+      const topicNames = topics.map((topic) => topic.slug);
+      setTopics(topicNames);
+    });
   }, []);
+
   return (
     <form id="filters">
       <label htmlFor="order">order:</label>

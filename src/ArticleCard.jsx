@@ -8,9 +8,9 @@ export const ArticleCard = ({ article }) => {
         <Card.Img variant="top" src={article.article_img_url} />
       </Link>
       <Card.Body>
-        <Link to={"/articles/" + article.article_id}>
+        <a href={"/articles/" + article.article_id}>
           <Card.Title>{article.title}</Card.Title>
-        </Link>
+        </a>
         <Card.Text>author: {article.author}</Card.Text>
         <Card.Text>topic: {article.topic}</Card.Text>
         <Card.Text>comment count: {article.comment_count}</Card.Text>

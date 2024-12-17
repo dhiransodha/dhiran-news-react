@@ -67,12 +67,19 @@ label {
 }
 .article-body {
   padding-top: 20px;
+}
+.article-created-at {
+  padding-top: 20px;
+  font-style: italic;
+}
+.article-author {
+  padding-top: 20px;
   font-style: italic;
 }
 .article-title {
   font-weight: 600;
   margin-top: 20px;
-  font-size: 55px;
+  font-size: 45px;
 }
 .article-main {
   margin-left: 10vw;

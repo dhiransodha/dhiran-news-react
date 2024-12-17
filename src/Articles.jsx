@@ -1,46 +1,36 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ArticleList } from "./ArticleList";
 import Lottie from "lottie-react";
 import loading from "./assets/loading.json";
 import { PageSelection } from "./PageSelection";
 import { Filters } from "./Filters";
-import apiClient from "./utils";
+import LoadingContext, { ErrorContext } from "./Contexts";
+import useApiGet from "./utils";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
+  const { isLoading } = useContext(LoadingContext);
+  const { isError } = useContext(ErrorContext);
   const [filters, setFilters] = useState({
     order: "desc",
     sortBy: "created_at",
     topic: "",
   });
   const limit = 4;
-
+  const { get } = useApiGet();
   useEffect(() => {
-    setIsLoading(true);
-    setIsError(false);
-    apiClient
-      .get("/articles", {
-        params: {
-          topic: filters.topic,
-          sort_by: filters.sortBy,
-          order: filters.order,
-          limit: limit,
-          p: page,
-        },
-      })
-      .then(({ data }) => {
-        setArticles(data.articles);
-        setTotalItems(data.total_count);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
-      });
+    get("articles", {
+      topic: filters.topic,
+      sort_by: filters.sortBy,
+      order: filters.order,
+      limit: limit,
+      p: page,
+    }).then((data) => {
+      setArticles(data.articles);
+      setTotalItems(data.total_count);
+    });
   }, [page, filters]);
   return (
     <section id="articles">

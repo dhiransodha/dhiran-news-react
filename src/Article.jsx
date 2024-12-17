@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import loading from "./assets/loading.json";
 import Lottie from "lottie-react";
 import { ArticleMain } from "./ArticleMain";
-import apiClient from "./utils";
+import { ArticleComments } from "./ArticleComments";
+import LoadingContext, { ErrorContext } from "./Contexts";
+import useApiGet from "./utils";
 
 export const Article = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(true);
+  const { isLoading } = useContext(LoadingContext);
+  const { isError } = useContext(ErrorContext);
+  const { get } = useApiGet();
   useEffect(() => {
-    setIsLoading(true);
-    setIsError(false);
-    apiClient
-      .get(`articles/${article_id}`)
-      .then(({ data: { article } }) => {
-        setArticle(article);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
-      });
+    get(`articles/${article_id}`).then(({ article: articleObj }) => {
+      setArticle(articleObj);
+    });
   }, []);
   return (
     <>
@@ -32,7 +26,10 @@ export const Article = () => {
         ) : isError ? (
           <p>error loading content</p>
         ) : (
-          <ArticleMain article={article} />
+          <>
+            <ArticleMain article={article} />
+            <ArticleComments />
+          </>
         )}
       </section>
     </>
