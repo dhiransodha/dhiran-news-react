@@ -15,7 +15,7 @@ export const PageSelection = ({ limit, page, setPage, totalItems }) => {
     );
   }
   return (
-    <div>
+    <div className="page-selection">
       <Pagination>{items}</Pagination>
       <br />
     </div>
