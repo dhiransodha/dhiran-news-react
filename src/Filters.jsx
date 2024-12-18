@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { getDataFromApi } from "./utils";
 
-export const Filters = ({ setFilters }) => {
+export const Filters = ({ setFilters, setIsError, setIsLoading }) => {
   const handleChange = (e) => {
     setFilters((filters) => {
       return { ...filters, [e.target.name]: e.target.value };
@@ -9,13 +9,17 @@ export const Filters = ({ setFilters }) => {
   };
   const [topics, setTopics] = useState([]);
   useEffect(() => {
-    axios
-      .get(`https://dhiran-news.onrender.com/api/topics`)
-      .then(({ data: { topics } }) => {
+    getDataFromApi("topics")
+      .then(({ topics }) => {
         const topicNames = topics.map((topic) => topic.slug);
         setTopics(topicNames);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
       });
   }, []);
+
   return (
     <form id="filters">
       <label htmlFor="order">order:</label>

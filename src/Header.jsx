@@ -4,7 +4,7 @@ export const Header = () => {
   return (
     <section id="header">
       <h1>
-        <Link to="/">NEWS APP</Link>
+        <Link to="/">THE NEWS APP</Link>
       </h1>
       <div>
         <img />
@@ -12,7 +12,7 @@ export const Header = () => {
       </div>
       <div>
         <img />
-        Search
+        <Link to="/articles">Browse</Link>
       </div>
     </section>
   );

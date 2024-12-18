@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import loading from "./assets/loading.json";
 import Lottie from "lottie-react";
 import { ArticleMain } from "./ArticleMain";
-import apiClient from "./utils";
+import { ArticleComments } from "./ArticleComments";
+import { getDataFromApi } from "./utils";
 
 export const Article = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(true);
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    apiClient
-      .get(`articles/${article_id}`)
-      .then(({ data: { article } }) => {
-        setArticle(article);
-        setIsLoading(false);
+    getDataFromApi(`articles/${article_id}`)
+      .then(({ article: articleObj }) => {
+        setArticle(articleObj);
       })
-      .catch(() => {
-        setIsLoading(false);
-        setIsError(true);
+      .then(() => {
+        getDataFromApi(`articles/${article_id}/comments`).then(
+          ({ comments: commentsArr }) => {
+            setComments(commentsArr);
+            setIsLoading(false);
+          }
+        );
       });
   }, []);
   return (
@@ -32,7 +36,10 @@ export const Article = () => {
         ) : isError ? (
           <p>error loading content</p>
         ) : (
-          <ArticleMain article={article} />
+          <>
+            <ArticleMain article={article} />
+            <ArticleComments comments={comments} />
+          </>
         )}
       </section>
     </>
