@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
-import useApiGet from "./utils";
+import { getDataFromApi } from "./utils";
 
-export const Filters = ({ setFilters }) => {
+export const Filters = ({ setFilters, setIsError, setIsLoading }) => {
   const handleChange = (e) => {
     setFilters((filters) => {
       return { ...filters, [e.target.name]: e.target.value };
     });
   };
   const [topics, setTopics] = useState([]);
-  const { get } = useApiGet();
   useEffect(() => {
-    get("topics").then(({ topics }) => {
-      const topicNames = topics.map((topic) => topic.slug);
-      setTopics(topicNames);
-    });
+    getDataFromApi("topics")
+      .then(({ topics }) => {
+        const topicNames = topics.map((topic) => topic.slug);
+        setTopics(topicNames);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+      });
   }, []);
 
   return (

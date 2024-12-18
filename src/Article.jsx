@@ -1,22 +1,32 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import loading from "./assets/loading.json";
 import Lottie from "lottie-react";
 import { ArticleMain } from "./ArticleMain";
 import { ArticleComments } from "./ArticleComments";
-import LoadingContext, { ErrorContext } from "./Contexts";
-import useApiGet from "./utils";
+import { getDataFromApi } from "./utils";
 
 export const Article = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
-  const { isLoading } = useContext(LoadingContext);
-  const { isError } = useContext(ErrorContext);
-  const { get } = useApiGet();
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
   useEffect(() => {
-    get(`articles/${article_id}`).then(({ article: articleObj }) => {
-      setArticle(articleObj);
-    });
+    setIsLoading(true);
+    setIsError(false);
+    getDataFromApi(`articles/${article_id}`)
+      .then(({ article: articleObj }) => {
+        setArticle(articleObj);
+      })
+      .then(() => {
+        getDataFromApi(`articles/${article_id}/comments`).then(
+          ({ comments: commentsArr }) => {
+            setComments(commentsArr);
+            setIsLoading(false);
+          }
+        );
+      });
   }, []);
   return (
     <>
@@ -28,7 +38,7 @@ export const Article = () => {
         ) : (
           <>
             <ArticleMain article={article} />
-            <ArticleComments />
+            <ArticleComments comments={comments} />
           </>
         )}
       </section>

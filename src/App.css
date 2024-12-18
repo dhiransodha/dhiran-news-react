@@ -13,7 +13,8 @@
   justify-content: space-around;
   align-items: center;
   font-size: 50px;
-  border: solid black;
+  border-radius: 10px;
+  background-color: blanchedalmond;
 }
 
 #welcome {
@@ -47,8 +48,11 @@
 #article-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin: 20px;
+}
+.article-card{
+  padding: 0px 5px;
 }
 
 #filters {
@@ -81,12 +85,30 @@ label {
   margin-top: 20px;
   font-size: 45px;
 }
-.article-main {
-  margin-left: 10vw;
-  margin-right: 35vw;
-  display: flex;
-  flex-direction: column;
-}
 .page-selection {
   margin-left: 2.2vw;
+}
+
+#article {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.article-main {
+  margin-left: 10vw;
+  margin-right: 5vw;
+  margin-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.article-comments {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.comment-card {
+  margin: 10px 0px;
 }
