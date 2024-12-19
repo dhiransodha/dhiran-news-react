@@ -51,7 +51,7 @@
   justify-content: center;
   margin: 20px;
 }
-.article-card{
+.article-card {
   padding: 0px 5px;
 }
 
@@ -65,8 +65,8 @@ label {
 }
 
 .article-img {
-  height: 35vh;
-  width: 50vh;
+  height: 50vh;
+  width: 70vh;
   padding-top: 20px;
 }
 .article-body {
@@ -101,6 +101,7 @@ label {
   display: flex;
   flex-direction: column;
   flex: 1;
+  align-items: flex-start;
 }
 .article-comments {
   display: flex;
@@ -111,4 +112,13 @@ label {
 
 .comment-card {
   margin: 10px 0px;
+}
+
+.vote-card {
+  display: flex;
+  align-items: center;
+}
+
+.vote-alert {
+  padding-left: 40px;
 }
