@@ -1,6 +1,7 @@
+import { PostComment } from "./PostComment";
 import VoteCard from "./VoteCard";
 
-export const ArticleMain = ({ article }) => {
+export const ArticleMain = ({ article, setComments }) => {
   return (
     <section className="article-main">
       <h2 className="article-title">{article.title}</h2>
@@ -10,6 +11,7 @@ export const ArticleMain = ({ article }) => {
       <VoteCard objToIncrement={article} typeName={"article"} />
       <img className="article-img" src={article.article_img_url} />
       <p className="article-body">{article.body}</p>
+      <PostComment article={article} setComments={setComments} />
     </section>
   );
 };

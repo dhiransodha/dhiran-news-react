@@ -41,7 +41,7 @@ export const Article = () => {
           <p>error loading content</p>
         ) : (
           <>
-            <ArticleMain article={article} />
+            <ArticleMain article={article} setComments={setComments} />
             <ArticleComments comments={comments} />
           </>
         )}
