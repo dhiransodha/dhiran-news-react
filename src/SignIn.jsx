@@ -21,8 +21,8 @@ export const SignIn = () => {
         setUsername("");
         setSuccess(true);
         localStorage.setItem("user", JSON.stringify(user));
-        setUser(user.username);
         setTimeout(() => {
+          setUser(user.username);
           navigate(-1);
         }, 700);
       })

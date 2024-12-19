@@ -21,13 +21,13 @@ export const PostComment = ({ article, setComments }) => {
     setIsError(false);
     setIsPosting(true);
     setSuccess(false);
-    if (!localStorage.getItem("user")) navigate("/sign-in");
+    if (!JSON.parse(localStorage.getItem("user"))) navigate("/sign-in");
     else {
       postToApi(`articles/${article.article_id}/comments`, {
         username: JSON.parse(localStorage.getItem("user")).username,
         body: comment,
       })
-        .then((res) => {
+        .then(() => {
           setIsPosting(false);
           setSuccess(true);
           setCounter(counter + 1);
@@ -47,8 +47,7 @@ export const PostComment = ({ article, setComments }) => {
             setSuccess(false);
           }, 1500);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           setIsPosting(false);
           setIsError(true);
         });
