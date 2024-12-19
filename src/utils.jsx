@@ -10,7 +10,7 @@ export const getDataFromApi = async (name, params) => {
 };
 
 export const postToApi = async (name, body) => {
-  return apiClient.post(`/${name}`, body).then(({ data }) => data);
+  return apiClient.post(`/${name}`, body);
 };
 
 export const incrementArticleVotes = async (article_id, votes) => {
