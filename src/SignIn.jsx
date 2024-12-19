@@ -1,16 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { getDataFromApi } from "./utils";
 import { Alert } from "react-bootstrap";
-import UserContext from "./Contexts";
 import { useNavigate } from "react-router-dom";
 
-export const SignIn = () => {
+export const SignIn = ({setUser}) => {
   const [username, setUsername] = useState("");
   const [isError, setIsError] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,13 +19,13 @@ export const SignIn = () => {
         setUsername("");
         setSuccess(true);
         localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
         setTimeout(() => {
-          setUser(user.username);
           navigate(-1);
         }, 700);
       })
       .catch((err) => {
-        setUser(null);
+        console.log(err)
         if (err.response && err.response.data.msg === "username not found") {
           setNotFoundError(true);
         } else setIsError(true);
