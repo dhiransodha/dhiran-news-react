@@ -27,13 +27,13 @@ export const PostComment = ({ article, setComments }) => {
         username: JSON.parse(localStorage.getItem("user")).username,
         body: comment,
       })
-        .then(() => {
+        .then((res) => {
           setIsPosting(false);
           setSuccess(true);
           setCounter(counter + 1);
           setComments((comments) => [
             {
-              comment_id: 9999999 + counter,
+              comment_id: res.comment.comment_id,
               body: comment,
               article_id: 1,
               author: JSON.parse(localStorage.getItem("user")).username,

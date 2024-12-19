@@ -10,7 +10,7 @@ export const getDataFromApi = async (name, params) => {
 };
 
 export const postToApi = async (name, body) => {
-  return apiClient.post(`/${name}`, body);
+  return apiClient.post(`/${name}`, body).then(({ data }) => data);
 };
 
 export const incrementArticleVotes = async (article_id, votes) => {
@@ -20,7 +20,7 @@ export const incrementArticleVotes = async (article_id, votes) => {
 };
 
 export const deleteCommentById = async (comment_id) => {
-  return apiClient.delete(`comments/${comment_id}`)
+  return apiClient.delete(`comments/${comment_id}`);
 };
 
 export default apiClient;
