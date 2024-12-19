@@ -42,7 +42,7 @@ export const Article = () => {
         ) : (
           <>
             <ArticleMain article={article} setComments={setComments} />
-            <ArticleComments comments={comments} />
+            <ArticleComments comments={comments} setComments={setComments} />
           </>
         )}
       </section>

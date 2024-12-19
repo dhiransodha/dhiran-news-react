@@ -19,4 +19,8 @@ export const incrementArticleVotes = async (article_id, votes) => {
     .then(({ data }) => data.article.votes);
 };
 
+export const deleteCommentById = async (comment_id) => {
+  return apiClient.delete(`comments/${comment_id}`)
+};
+
 export default apiClient;
