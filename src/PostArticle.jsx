@@ -31,12 +31,13 @@ export const PostArticle = () => {
       .catch(() => {
         setIsError(true);
       });
-  }, []);
+  }, [topics, options]);
   const [articleInfo, setArticleInfo] = useState({
     author: user.username,
     title: "",
     body: "",
     topic: "other",
+    article_img_url: null,
     topic_other: "",
   });
   const handleClick = () => {
@@ -104,6 +105,25 @@ export const PostArticle = () => {
             style={{ height: "55vh" }}
             value={articleInfo.body}
           />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="article_img_url">
+          <Form.Label>Article Image URL</Form.Label>
+          <Form.Control
+            type="url"
+            placeholder="article image url"
+            aria-describedby="articleImageHelpBlock"
+            onChange={handleChange}
+            required
+          />
+          <Form.Text id="articleImageHelpBlock" muted>
+            Select your photo from{" "}
+            <a href="https://www.pexels.com" target="_blank">
+              Pexels.com
+            </a>{" "}
+            by right clicking on a free image and pressing 'copy image address.'
+            On mobile devices simply click on the image then hold it down and
+            press 'copy image' - try a landscape photo for the best results
+          </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="topic">
           <Form.Label>Topic</Form.Label>

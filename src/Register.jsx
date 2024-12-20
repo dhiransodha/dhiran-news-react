@@ -21,7 +21,7 @@ export const Register = ({ setUser }) => {
     setIsPosting(true);
     setIsError(false);
     postToApi("users", registerInfo)
-      .then(({user}) => {
+      .then(({ user }) => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
         setIsPosting(false);
@@ -65,7 +65,9 @@ export const Register = ({ setUser }) => {
         <a href="https://www.pexels.com" target="_blank">
           Pexels.com
         </a>{" "}
-        by right clicking on a free image and pressing 'copy image address'
+        by right clicking on a free image and pressing 'copy image address.' On
+        mobile devices simply click on the image then hold it down and press
+        'copy image'
       </Form.Text>
       <Button variant="success" onClick={handleClick}>
         Register
