@@ -1,11 +1,24 @@
 import { useEffect, useState } from "react";
 import { getDataFromApi } from "./utils";
 
-export const Filters = ({ setFilters, setIsError, setIsLoading }) => {
+export const Filters = ({
+  searchParams,
+  setSearchParams,
+  filters,
+  setFilters,
+  setIsError,
+  setIsLoading,
+}) => {
   const handleChange = (e) => {
     setFilters((filters) => {
       return { ...filters, [e.target.name]: e.target.value };
     });
+    const searchParams = {};
+    for (let key in filters) {
+      if (filters[key].length) searchParams[key] = filters[key];
+      searchParams[e.target.name] = e.target.value;
+    }
+    setSearchParams(searchParams);
   };
   const [topics, setTopics] = useState([]);
   useEffect(() => {
@@ -23,13 +36,13 @@ export const Filters = ({ setFilters, setIsError, setIsLoading }) => {
   return (
     <form id="filters">
       <label htmlFor="order">order:</label>
-      <select name="order" onChange={handleChange}>
+      <select value={filters.order} name="order" onChange={handleChange}>
         <option value="desc">descending</option>
         <option value="asc">ascending</option>
       </select>
       <label htmlFor="sortBy">sort by:</label>
-      <select name="sortBy" onChange={handleChange}>
-        <option value="created_at">posted at</option>
+      <select value={filters.sortBy} name="sortBy" onChange={handleChange}>
+        <option value="created_at">created at</option>
         <option value="title">title</option>
         <option value="author">author</option>
         <option value="topic">topic</option>
@@ -37,7 +50,7 @@ export const Filters = ({ setFilters, setIsError, setIsLoading }) => {
         <option value="comment_count">comment count</option>
       </select>
       <label htmlFor="topic">topic:</label>
-      <select name="topic" onChange={handleChange}>
+      <select value={filters.topic} name="topic" onChange={handleChange}>
         <option value="">all</option>
         {topics.map((topic) => {
           return (
