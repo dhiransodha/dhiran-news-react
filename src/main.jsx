@@ -7,7 +7,7 @@ createRoot(document.getElementById("root")).render(
     {/* <ErrorProvider>
         <LoadingProvider> */}
     {/* <UserProvider> */}
-      <App />
+    <App />
     {/* </UserProvider> */}
     {/* </LoadingProvider>
       </ErrorProvider> */}
