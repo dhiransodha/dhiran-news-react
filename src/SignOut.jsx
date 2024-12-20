@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import blankProfilePicture from "./assets/blank-profile-picture.png";
 
 export const SignOut = ({ setUser }) => {
   const navigate = useNavigate();
@@ -7,17 +8,17 @@ export const SignOut = ({ setUser }) => {
     JSON.stringify({
       username: null,
       name: null,
-      avatar_url: "src/assets/blank-profile-picture.png",
+      avatar_url: blankProfilePicture,
     })
   );
   setUser({
     username: null,
     name: null,
-    avatar_url: "src/assets/blank-profile-picture.png",
+    avatar_url: blankProfilePicture,
   });
   setTimeout(() => {
-    navigate('/');
-  }, 2000);
+    navigate("/");
+  }, 1200);
   return (
     <section className="sign-out">
       <p>signing out...</p>

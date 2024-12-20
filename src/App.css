@@ -126,3 +126,18 @@ label {
 .sign-in {
   margin: 100px;
 }
+
+.register {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+}
