@@ -43,7 +43,9 @@ export const Articles = () => {
         setIsLoading(false);
         if (!data.articles.length) {
           setIsError(true);
-          setErrMsg("topic does not exist");
+          setErrMsg(
+            "no articles returned: try reloading the page or selecting a different topic"
+          );
         }
         setArticles(data.articles);
         setTotalItems(data.total_count);
