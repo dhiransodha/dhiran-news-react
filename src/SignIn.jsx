@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { getDataFromApi } from "./utils";
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export const SignIn = ({setUser}) => {
+export const SignIn = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [isError, setIsError] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
@@ -21,11 +21,10 @@ export const SignIn = ({setUser}) => {
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 700);
       })
       .catch((err) => {
-        console.log(err)
         if (err.response && err.response.data.msg === "username not found") {
           setNotFoundError(true);
         } else setIsError(true);
@@ -38,6 +37,7 @@ export const SignIn = ({setUser}) => {
 
   return (
     <section className="sign-in">
+      <h2>Sign in</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Enter your username</Form.Label>
@@ -49,6 +49,9 @@ export const SignIn = ({setUser}) => {
             onChange={handleChange}
           />
         </Form.Group>
+        <Button variant="success" onClick={handleSubmit}>
+          Log in
+        </Button>
       </Form>
       {notFoundError ? (
         <Alert key="invalid-username" variant="danger">

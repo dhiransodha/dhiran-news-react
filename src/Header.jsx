@@ -40,6 +40,7 @@ export const Header = ({ user }) => {
                 <Nav.Link href="/register">Register</Nav.Link>
               </>
             )}
+            <Nav.Link href="/post-article">Post an article</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

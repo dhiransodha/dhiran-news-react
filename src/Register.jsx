@@ -34,7 +34,6 @@ export const Register = ({ setUser }) => {
         setIsPosting(false);
         setIsError(true);
         if (response.data.msg !== "bad request") setErrMsg(response.data.msg);
-        console.log(response.data.msg);
       });
   };
   const handleChange = (e) => {

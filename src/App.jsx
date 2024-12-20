@@ -12,6 +12,7 @@ import { Alert } from "react-bootstrap";
 import blankProfilePicture from "./assets/blank-profile-picture.png";
 import { Register } from "./Register";
 import { Profile } from "./Profile";
+import { PostArticle } from "./PostArticle";
 
 function App() {
   if (!JSON.parse(localStorage.getItem("user")))
@@ -35,6 +36,7 @@ function App() {
         <Route path="/sign-out" element={<SignOut setUser={setUser} />} />
         <Route path="/register" element={<Register setUser={setUser} />} />
         <Route path="/profile" element={<Profile user={user} />} />
+        <Route path="/post-article" element={<PostArticle user={user} />} />
         <Route
           path="*"
           element={

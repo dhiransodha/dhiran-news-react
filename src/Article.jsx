@@ -48,7 +48,12 @@ export const Article = () => {
           </Alert>
         ) : (
           <>
-            <ArticleMain article={article} setComments={setComments} />
+            <ArticleMain
+              article={article}
+              setComments={setComments}
+              setIsError={setIsError}
+              setErrMsg={setErrMsg}
+            />
             <ArticleComments comments={comments} setComments={setComments} />
           </>
         )}

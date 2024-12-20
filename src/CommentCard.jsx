@@ -10,13 +10,12 @@ export const CommentCard = ({ comment, setComments, setIsError }) => {
         return comment.comment_id !== commentInComments.comment_id;
       });
     });
-    deleteCommentById(comment.comment_id)
-      .catch(() => {
-        setIsError(true);
-        setComments((comments) => {
-          return [comment, ...comments];
-        });
+    deleteCommentById(comment.comment_id).catch(() => {
+      setIsError(true);
+      setComments((comments) => {
+        return [comment, ...comments];
       });
+    });
   };
   if (/^\d+$/.test(comment.created_at))
     comment.created_at = String(new Date(Number(comment.created_at)));

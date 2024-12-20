@@ -23,4 +23,8 @@ export const deleteCommentById = async (comment_id) => {
   return apiClient.delete(`comments/${comment_id}`);
 };
 
+export const deleteArticleById = async (article_id) => {
+  return apiClient.delete(`articles/${article_id}`);
+};
+
 export default apiClient;

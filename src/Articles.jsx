@@ -74,7 +74,7 @@ export const Articles = () => {
         </Alert>
       ) : (
         <>
-          <ArticleList articles={articles} />
+          <ArticleList articles={articles} setArticles={setArticles} setIsError={setIsError} />
           <PageSelection
             totalItems={totalItems}
             page={page}
