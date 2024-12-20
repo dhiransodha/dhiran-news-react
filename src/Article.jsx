@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import { ArticleMain } from "./ArticleMain";
 import { ArticleComments } from "./ArticleComments";
 import { getDataFromApi } from "./utils";
+import { Alert } from "react-bootstrap";
 
 export const Article = () => {
   const { article_id } = useParams();
@@ -12,6 +13,7 @@ export const Article = () => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errMsg, setErrMsg] = useState("error loading content");
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
@@ -27,7 +29,10 @@ export const Article = () => {
           }
         );
       })
-      .catch(() => {
+      .catch((err) => {
+        if (err.response.data.msg && err.response.data.status === 404)
+          setErrMsg("article not found");
+        else setErrMsg("error loading content");
         setIsLoading(false);
         setIsError(true);
       });
@@ -38,7 +43,9 @@ export const Article = () => {
         {isLoading ? (
           <Lottie animationData={loading} />
         ) : isError ? (
-          <p>error loading content</p>
+          <Alert key="error-message" variant="danger">
+            {errMsg}
+          </Alert>
         ) : (
           <>
             <ArticleMain article={article} setComments={setComments} />
