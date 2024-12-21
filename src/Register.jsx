@@ -43,6 +43,7 @@ export const Register = ({ setUser }) => {
   };
   return (
     <section className="register">
+      <h2>Register</h2>
       <Form.Label htmlFor="username">Username</Form.Label>
       <Form.Control
         type="text"
