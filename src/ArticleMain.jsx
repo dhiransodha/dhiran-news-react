@@ -27,7 +27,7 @@ export const ArticleMain = ({
     <section className="article-main">
       <h2 className="article-title">{article.title}</h2>
       <p className="article-author">
-        by {article.author} on {article.created_at.replace(/:00\s.+$/, "")}
+        by {article.author} on {article.created_at.replace(/:\d{2}\s.+$/, "")}
       </p>
       {username === article.author ? (
         <Button onClick={handleClick} variant="danger">

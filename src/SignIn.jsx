@@ -2,7 +2,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { getDataFromApi } from "./utils";
 import { Alert, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SignIn = ({ setUser }) => {
   const [username, setUsername] = useState("");
@@ -37,7 +37,9 @@ export const SignIn = ({ setUser }) => {
 
   return (
     <section className="sign-in">
-      <h2>Sign in</h2>
+      <h2>
+        Sign in or register <Link to="/register">here</Link>
+      </h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Enter your username</Form.Label>
