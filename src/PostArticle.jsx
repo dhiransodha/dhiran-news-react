@@ -8,7 +8,7 @@ export const PostArticle = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user.username) navigate("/sign-in");
+    if (!user.username) navigate("/register");
   }, [user, navigate]);
   const [isError, setIsError] = useState(false);
   const [success, setSuccess] = useState(false);

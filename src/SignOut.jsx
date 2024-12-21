@@ -21,7 +21,7 @@ export const SignOut = ({ setUser }) => {
   }, 1200);
   return (
     <section className="sign-out">
-      <p>signing out...</p>
+      <h5>signing out...</h5>
     </section>
   );
 };

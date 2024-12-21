@@ -47,6 +47,12 @@
   margin-left: 2.2vw;
 }
 
+.sign-out {
+  font-size: 15px;
+  margin-left: 2.2vw;
+  margin-top: 10px;
+}
+
 #article-list {
   display: flex;
   flex-wrap: wrap;
@@ -149,7 +155,9 @@ label {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 25px;
+  margin-left: 4vw;
+  margin-right: 3vw;
+  margin-bottom: 10vh;
 }
 
 .comment-card {

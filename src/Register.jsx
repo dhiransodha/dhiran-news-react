@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { postToApi } from "./utils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Register = ({ setUser }) => {
   const navigate = useNavigate();
@@ -43,7 +43,9 @@ export const Register = ({ setUser }) => {
   };
   return (
     <section className="register">
-      <h2>Register</h2>
+      <h2>
+        Register or sign in <Link to="/sign-in">here</Link>
+      </h2>
       <Form.Label htmlFor="username">Username</Form.Label>
       <Form.Control
         type="text"

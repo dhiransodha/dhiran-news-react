@@ -21,7 +21,8 @@ export const PostComment = ({ article, setComments }) => {
     setIsError(false);
     setIsPosting(true);
     setSuccess(false);
-    if (!JSON.parse(localStorage.getItem("user"))) navigate("/sign-in");
+    if (!JSON.parse(localStorage.getItem("user")).username)
+      navigate("/register");
     else {
       postToApi(`articles/${article.article_id}/comments`, {
         username: JSON.parse(localStorage.getItem("user")).username,

@@ -38,7 +38,7 @@ export const SignIn = ({ setUser }) => {
   return (
     <section className="sign-in">
       <h2>
-        Sign in or register <Link to="/register">here</Link>
+        Sign in
       </h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -54,6 +54,7 @@ export const SignIn = ({ setUser }) => {
         <Button variant="success" onClick={handleSubmit}>
           Log in
         </Button>
+        <p>or register <Link to="/register">here</Link></p>
       </Form>
       {notFoundError ? (
         <Alert key="invalid-username" variant="danger">
