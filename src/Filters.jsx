@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDataFromApi } from "./utils";
+import { Form } from "react-bootstrap";
 
 export const Filters = ({
   searchParams,
@@ -34,23 +35,23 @@ export const Filters = ({
   }, []);
 
   return (
-    <form id="filters">
-      <label htmlFor="order">order:</label>
-      <select value={filters.order} name="order" onChange={handleChange}>
+    <Form className="filters">
+      <Form.Label htmlFor="order">Order:</Form.Label>
+      <Form.Select value={filters.order} name="order" onChange={handleChange}>
         <option value="desc">descending</option>
         <option value="asc">ascending</option>
-      </select>
-      <label htmlFor="sortBy">sort by:</label>
-      <select value={filters.sortBy} name="sortBy" onChange={handleChange}>
+      </Form.Select>
+      <Form.Label htmlFor="sortBy">Sort by:</Form.Label>
+      <Form.Select value={filters.sortBy} name="sortBy" onChange={handleChange}>
         <option value="created_at">created at</option>
         <option value="title">title</option>
         <option value="author">author</option>
         <option value="topic">topic</option>
         <option value="votes">votes</option>
         <option value="comment_count">comment count</option>
-      </select>
-      <label htmlFor="topic">topic:</label>
-      <select value={filters.topic} name="topic" onChange={handleChange}>
+      </Form.Select>
+      <Form.Label htmlFor="topic">Topic:</Form.Label>
+      <Form.Select value={filters.topic} name="topic" onChange={handleChange}>
         <option value="">all</option>
         {topics.map((topic) => {
           return (
@@ -59,7 +60,7 @@ export const Filters = ({
             </option>
           );
         })}
-      </select>
-    </form>
+      </Form.Select>
+    </Form>
   );
 };
