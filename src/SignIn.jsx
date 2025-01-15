@@ -12,6 +12,7 @@ export const SignIn = ({ setUser }) => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!username) return undefined;
     setNotFoundError(false);
     setIsError(false);
     getDataFromApi(`users/${username}`)
@@ -37,9 +38,7 @@ export const SignIn = ({ setUser }) => {
 
   return (
     <section className="sign-in">
-      <h2>
-        Sign in
-      </h2>
+      <h2>Sign in</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Enter your username</Form.Label>
@@ -47,14 +46,16 @@ export const SignIn = ({ setUser }) => {
             required
             value={username}
             type="text"
-            placeholder="grumpy19"
+            placeholder="enter your username"
             onChange={handleChange}
           />
         </Form.Group>
         <Button variant="success" onClick={handleSubmit}>
           Log in
         </Button>
-        <p>or register <Link to="/register">here</Link></p>
+        <p>
+          or register <Link to="/register">here</Link>
+        </p>
       </Form>
       {notFoundError ? (
         <Alert key="invalid-username" variant="danger">
