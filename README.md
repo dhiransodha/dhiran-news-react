@@ -1,7 +1,7 @@
 # The News App by Dhiran Sodha
 
 **LINK TO DEPLOYED VERSION**
-Current working version [here](https://dhiran-news-app.netlify.app/articles).
+Current working version [here](https://dhiran-news-app.netlify.app).
 When first using the app and loading content you need to wait around 20s and refresh the page a few times, since the free backend hosting site used spins down when left not in use.
 
 **WHAT EVEN IS THIS APP?**
@@ -10,3 +10,11 @@ This app is my first project, built in two weeks with the goal of learning how t
 The app lets anyone browse articles posted by the userbase. Users can sort through articles by title, filter by different categories or sort by popularity. If the user has an account (which can be made by registering - for free!) then they can post their own articles, delete their articles, post comments on articles, delete their comments and finally downvote or upvote articles.
 
 Enjoy! Post an article if you so dare!
+
+---
+
+Backend repo [here](https://github.com/dhiransodha/dhiran-news-api).
+
+---
+
+To run locally, run `npm install` and then `npm run dev`. Minimum Node version `23.6.0`.
