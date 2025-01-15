@@ -10,6 +10,9 @@ export const PostArticle = () => {
   useEffect(() => {
     if (!user.username) navigate("/register");
   }, [user, navigate]);
+  const [errMsg, setErrMsg] = useState(
+    "There was an error displaying content or posting: please try reloading the page or posting again"
+  );
   const [isError, setIsError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [topics, setTopics] = useState([]);
@@ -42,6 +45,20 @@ export const PostArticle = () => {
   });
   const handleClick = () => {
     setIsError(false);
+    setErrMsg(
+      "There was an error displaying content or posting: please try reloading the page or posting again"
+    );
+    if (
+      !articleInfo.title ||
+      !articleInfo.body ||
+      (articleInfo.topic === "other" && !articleInfo.topic_other)
+    ) {
+      setIsError(true);
+      setErrMsg(
+        "make sure to fill out all fields (including topic if selected other)"
+      );
+      return null;
+    }
     const article = { ...articleInfo };
     if (articleInfo.topic === "other") {
       article.topic = articleInfo.topic_other;
@@ -88,7 +105,6 @@ export const PostArticle = () => {
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
-            required
             type="text"
             onChange={handleChange}
             size="lg"
@@ -113,7 +129,6 @@ export const PostArticle = () => {
             placeholder="article image url"
             aria-describedby="articleImageHelpBlock"
             onChange={handleChange}
-            required
           />
           <Form.Text id="articleImageHelpBlock" muted>
             Select your photo from{" "}
@@ -159,8 +174,7 @@ export const PostArticle = () => {
       ) : null}
       {isError ? (
         <Alert variant="danger" key="error-message">
-          There was an error displaying content or posting: please try reloading
-          the page or posting again
+          {errMsg}
         </Alert>
       ) : null}
     </section>
